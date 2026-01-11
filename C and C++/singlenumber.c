@@ -1,3 +1,5 @@
+//In this code the array has elements who come twice this code finds the element 
+// which doesn't repeat itself
 #include <stdio.h>
 
 int singleNumber(int nums[], int n) {
@@ -6,7 +8,7 @@ int singleNumber(int nums[], int n) {
 
     for(i = 0; i < n; i++)
     {
-        checking ^= nums[i];
+        checking ^= nums[i]; //XORing (New Method)
     }
     return checking;
 }
