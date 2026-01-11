@@ -8,7 +8,8 @@ int main(void)
     int c;
     printf("Provided three integer to compare which one is the greatest: ");
     scanf("%d %d %d", &a, &b, &c);
-
+    
+    //don't put extra else if's but put those 3 putting extra messes with the command
     if(a > b && a > c)
     {
         printf("%d is the greatest among the three integers\n", a);
