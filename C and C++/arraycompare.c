@@ -1,3 +1,6 @@
+// alice and bob are running for n days in "t" testcases find when they are both happy
+// alice is unhappy when bob ran strictly more then twice the alice and same for bob
+
 #include <stdio.h>
 
 int main() {
@@ -28,15 +31,7 @@ int main() {
         
         for(j = 0; j < n; j++)
         {
-            if (a[j] * 2 < b[j])
-            {
-                bob++;
-            }
-            else if(a[j] > 2 * b[j])
-            {
-                alice++;
-            }
-            else
+            if (a[j] > 2 * b[j] && b[j] > 2 * a[j])
             {
                 happymax++;
             }
