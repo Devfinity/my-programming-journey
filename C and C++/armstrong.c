@@ -1,3 +1,4 @@
+//Write a program that checks whether a number is an Armstrong number.
 #include <stdio.h>
 #include <math.h>
 
@@ -22,7 +23,7 @@ int main(void)
     while(copy != 0)
     {
         last_digit = copy % 10;
-        sum = sum + pow(last_digit, power);
+        sum += (long)pow(last_digit, power);
         copy = copy / 10;
     }
     if(sum == copy1)
