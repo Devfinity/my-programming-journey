@@ -20,21 +20,37 @@ int main() {
             scanf("%d", &a[i]);
         }
         int temp = a[0];
-        int second = a[0];
+        int second = -1;
 
         for(i = 1; i < n; i++)
         {
             if(a[i] > temp)
             {
+                second = temp;
                 temp = a[i];
             }    
             
-            else if (temp > a[i] && a[i] > second)
+            else if (a[i] > second && a[i] != temp)
             {
                 second = a[i];
             }
+
+            if(second == -1)
+            {
+                second = a[0];
+
+                for(int i = 1; i < n; ++i)
+                {
+                    if(a[i] != temp)
+                    {
+                        second = a[i];
+                        break;
+                    }   
+                }
+            }
         }
         printf("%d\n", temp + second);
+
     }
 
     return 0;
