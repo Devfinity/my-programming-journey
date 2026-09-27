@@ -16,32 +16,88 @@
 #include <string>
 using namespace std;
 
+//KMP Algorithm (Knuth–Morris–Pratt)
 class Solution {
 public:
     vector<int> substringprefix(string s)
     {
-        vector<int> occurance(s.size());
-        string prefix, temp;
-        int count = 0;
+        vector<int> answer;
+        vector<int> lps(s.size(), 0);
+        vector<int> count(s.size() + 1, 0);
+        int i = 1;
+        int j = 0;
 
-        for(int i = 0; i < s.size(); i++)
+        //lps means the longest part of a word that is both a valid 
+        // prefix and a valid suffix (but not the whole word itself).
+
+        while(i < s.size()) //lps (longest prefix suffix)
         {
-            prefix += s[i];
-            for(int j = 0; s.size() - j >= prefix.size(); j++)
+            if(s[i] == s[j])
             {
-                temp = s.substr(j, prefix.size());
-
-                if(prefix == temp)
+                lps[i] = j + 1;
+                i++;
+                j++;
+            }
+            else
+            {
+                if(j > 0)
                 {
-                    count++;
+                    j = lps[j - 1];
+                }
+                else
+                {
+                    lps[i] = 0;
+                    i++;
                 }
             }
-            occurance[i] = count;
-            count = 0;
         }
-        return occurance;
+
+        for(int i = 1; i < s.size(); i++)
+        {
+            count[lps[i]]++;
+        }
+
+        for(int i = s.size() - 1; i > 0; i--)
+        {
+            count[lps[i - 1]] += count[i];
+        }
+
+        for(int i = 1; i <= s.size() + 1; i++)
+        {
+            count[i]++;
+            answer.push_back(count[i]);
+        }
+        return answer;
     }
 };
+
+// brute force
+// class Solution {
+// public:
+//     vector<int> substringprefix(string s)
+//     {
+//         vector<int> occurance(s.size());
+//         string prefix, temp;
+//         int count = 0;
+
+//         for(int i = 0; i < s.size(); i++)
+//         {
+//             prefix += s[i];
+//             for(int j = 0; s.size() - j >= prefix.size(); j++)
+//             {
+//                 temp = s.substr(j, prefix.size());
+
+//                 if(prefix == temp)
+//                 {
+//                     count++;
+//                 }
+//             }
+//             occurance[i] = count;
+//             count = 0;
+//         }
+//         return occurance;
+//     }
+// };
 
 int main()
 {
