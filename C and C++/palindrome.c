@@ -8,6 +8,7 @@ int main(void)
     printf("Provide a integer: ");
     scanf("%ld", &digit);
 
+    long check = digit;
     long last_digit;
     long reverse = 0;
     while (digit != 0)
@@ -16,7 +17,7 @@ int main(void)
         digit = digit / 10;
         reverse = reverse*10 + last_digit;
     }
-    if(digit = reverse)
+    if(check == reverse)
     {
         printf("Provided integer is Palindrome!\n");
     }
